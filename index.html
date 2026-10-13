@@ -1,178 +1,261 @@
-<        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diskoteca | Portfólio de Redator</title>
+    <title>Maycon Maia — Redação & Copywriting</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #08080a;
-            --text-color: #e2e2e2;
+            --bg: #050507;
+            --surface: #101014;
+            --text: #f0f0f2;
+            --muted: #888892;
             --neon-red: #ff3333;
             --neon-green: #00ff88;
             --neon-orange: #ff9900;
             --neon-purple: #b000ff;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Space Mono', monospace;
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 24px 16px;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Space Mono', monospace;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
         }
 
         header {
-            text-align: center;
-            margin-bottom: 36px;
-            max-width: 500px;
-        }
-
-        header h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.7rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 0 0 10px 0;
-            color: #fff;
-            text-shadow: 0 0 15px rgba(255,255,255,0.2);
-        }
-
-        header p {
-            color: #888;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .shelf {
+            margin-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 30px;
             display: flex;
             flex-direction: column;
+            gap: 12px;
+        }
+
+        @media (min-width: 768px) {
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+        }
+
+        .header-left h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: #fff;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--neon-green);
+        }
+
+        .header-right p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-width: 380px;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        /* Grade responsiva: 1 coluna no mobile, 2 no tablet, 3 no desktop */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 24px;
-            width: 100%;
-            max-width: 420px;
         }
 
-        .lp-card {
-            background: #121216;
-            border-radius: 12px;
-            padding: 16px;
+        @media (min-width: 640px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 32px;
+            }
+        }
+
+        .project-card {
+            background: var(--surface);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Capas com texturas e gradientes analógicos */
+        .project-cover {
+            height: 200px;
+            width: 100%;
             position: relative;
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: transform 0.2s ease;
-        }
-
-        /* Efeitos de Neon refinados */
-        .lp-red { border-color: var(--neon-red); box-shadow: 0 0 15px rgba(255, 51, 51, 0.15); }
-        .lp-green { border-color: var(--neon-green); box-shadow: 0 0 15px rgba(0, 255, 136, 0.15); }
-        .lp-orange { border-color: var(--neon-orange); box-shadow: 0 0 15px rgba(255, 153, 0, 0.15); }
-        .lp-purple { border-color: var(--neon-purple); box-shadow: 0 0 15px rgba(176, 0, 255, 0.15); }
-
-        .album-cover {
-            width: 100%;
-            height: 140px;
-            border-radius: 8px;
-            margin-bottom: 14px;
             display: flex;
             align-items: flex-end;
-            padding: 12px;
+            padding: 16px;
             box-sizing: border-box;
-            position: relative;
-            overflow: hidden;
         }
 
-        .album-cover span {
-            font-size: 0.75rem;
+        .cover-1 { background: linear-gradient(145deg, #1f0a0a 0%, #080505 100%); border-bottom: 2px solid var(--neon-red); }
+        .cover-2 { background: linear-gradient(145deg, #051f12 0%, #050806 100%); border-bottom: 2px solid var(--neon-green); }
+        .cover-3 { background: linear-gradient(145deg, #1f1405 0%, #080705 100%); border-bottom: 2px solid var(--neon-orange); }
+        .cover-4 { background: linear-gradient(145deg, #14051f 0%, #060508 100%); border-bottom: 2px solid var(--neon-purple); }
+
+        .track-badge {
+            font-size: 0.7rem;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            background: rgba(0,0,0,0.6);
             padding: 4px 8px;
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 4px;
         }
 
-        .lp-red .album-cover span { color: var(--neon-red); }
-        .lp-green .album-cover span { color: var(--neon-green); }
-        .lp-orange .album-cover span { color: var(--neon-orange); }
-        .lp-purple .album-cover span { color: var(--neon-purple); }
+        .cover-1 .track-badge { color: var(--neon-red); }
+        .cover-2 .track-badge { color: var(--neon-green); }
+        .cover-3 .track-badge { color: var(--neon-orange); }
+        .cover-4 .track-badge { color: var(--neon-purple); }
 
-        .album-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin: 0 0 6px 0;
-            color: #fff;
+        .project-info {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
-        .album-tag {
+        .project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .project-meta {
             font-size: 0.78rem;
-            color: #999;
-            margin: 0;
-            line-height: 1.4;
+            color: var(--muted);
+            letter-spacing: 0.5px;
         }
 
         footer {
-            margin-top: 40px;
-            font-size: 0.75rem;
-            color: #555;
+            margin-top: 80px;
             text-align: center;
+            font-size: 0.75rem;
+            color: var(--muted);
             letter-spacing: 1px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 30px;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Diskoteca de Redação</h1>
-        <p>Selecione um álbum para conferir o projeto</p>
-    </header>
-
-    <div class="shelf">
-        <!-- Projeto 1 -->
-        <div class="lp-card lp-red">
-            <div class="album-cover" style="background: linear-gradient(135deg, #2a0000 0%, #0d0d0d 100%);">
-                <span>Faixa 01</span>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <span class="tagline">&#9679; Edição Colecionador</span>
+                <h1>Maycon Maia</h1>
             </div>
-            <h2 class="album-title">Campanha "O Futuro Analógico"</h2>
-            <p class="album-tag">Roteiro para TV &bull; Tom: Audacioso</p>
+            <div class="header-right">
+                <p>Redator & Copywriter. Roteiros, manifestos e campanhas sonoras que tocam na frequência certa para agências e marcas.</p>
+            </div>
+        </header>
+
+        <div class="section-title">Prateleira de Projetos (Lados A/B)</div>
+
+        <div class="grid">
+            <!-- Projeto 1 -->
+            <a href="#" class="project-card">
+                <div class="project-cover cover-1">
+                    <span class="track-badge">Faixa 01 &bull; Roteiro TV</span>
+                </div>
+                <div class="project-info">
+                    <h2 class="project-title">Campanha "O Futuro Analógico"</h2>
+                    <p class="project-meta">Tom: Audacioso &bull; Direção de Copy</p>
+                </div>
+            </a>
+
+            <!-- Projeto 2 -->
+            <a href="#" class="project-card">
+                <div class="project-cover cover-2">
+                    <span class="track-badge">Faixa 02 &bull; Manifesto</span>
+                </div>
+                <div class="project-info">
+                    <h2 class="project-title">EcoBeat: A Nova Era Sonora</h2>
+                    <p class="project-meta">Tom: Inspirador &bull; Brand Voice</p>
+                </div>
+            </a>
+
+            <!-- Projeto 3 -->
+            <a href="#" class="project-card">
+                <div class="project-cover cover-3">
+                    <span class="track-badge">Faixa 03 &bull; Social Media</span>
+                </div>
+                <div class="project-info">
+                    <h2 class="project-title">Lançamento SoundCassete</h2>
+                    <p class="project-meta">Tom: Irônico &bull; Campanha Digital</p>
+                </div>
+            </a>
+
+            <!-- Projeto 4 -->
+            <a href="#" class="project-card">
+                <div class="project-cover cover-4">
+                    <span class="track-badge">Faixa 04 &bull; Autoral</span>
+                </div>
+                <div class="project-info">
+                    <h2 class="project-title">Crônicas da Madrugada</h2>
+                    <p class="project-meta">Tom: Poético &bull; Conteúdo de Marca</p>
+                </div>
+            </a>
         </div>
 
-        <!-- Projeto 2 -->
-        <div class="lp-card lp-green">
-            <div class="album-cover" style="background: linear-gradient(135deg, #002a12 0%, #0d0d0d 100%);">
-                <span>Faixa 02</span>
-            </div>
-            <h2 class="album-title">Manifesto de Marca: EcoBeat</h2>
-            <p class="album-tag">Copywriting &bull; Tom: Inspirador</p>
-        </div>
-
-        <!-- Projeto 3 -->
-        <div class="lp-card lp-orange">
-            <div class="album-cover" style="background: linear-gradient(135deg, #2a1800 0%, #0d0d0d 100%);">
-                <span>Faixa 03</span>
-            </div>
-            <h2 class="album-title">Lançamento SoundCassete</h2>
-            <p class="album-tag">Social Media &bull; Tom: Irônico</p>
-        </div>
-
-        <!-- Projeto 4 -->
-        <div class="lp-card lp-purple">
-            <div class="album-cover" style="background: linear-gradient(135deg, #1b002a 0%, #0d0d0d 100%);">
-                <span>Faixa 04</span>
-            </div>
-            <h2 class="album-title">Crônicas da Madrugada</h2>
-            <p class="album-tag">Conteúdo Autoral &bull; Tom: Poético</p>
-        </div>
+        <footer>
+            <p>&copy; 2026 Maycon Maia. Todos os direitos reservados.</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>&copy; 2026 &bull; Redação & Vinil</p>
-    </footer>
 
 </body>
 </html>
