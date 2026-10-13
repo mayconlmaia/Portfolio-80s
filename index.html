@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maycon Maia — Diskoteca de Redação</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <title>Maycon Maia — Creative Copywriter</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030305;
-            --neon-red: #ff2a2a;
-            --neon-green: #00ff77;
-            --neon-orange: #ff8800;
-            --neon-purple: #9900ff;
+            --bg-color: #0f0e0d;
+            --surface-color: #181614;
+            --card-bg: #1c1917;
+            --text-primary: #f5f2eb;
+            --text-secondary: #a39e93;
+            --orange-gradient: linear-gradient(135deg, #d9531e 0%, #b3390c 50%, #702004 100%);
+            --orange-accent: #e65c00;
+            --retro-stripe-1: #d9531e;
+            --retro-stripe-2: #e09f3e;
+            --retro-stripe-3: #335c67;
+            --retro-stripe-4: #fff3b0;
         }
 
         * {
@@ -21,276 +27,330 @@
         }
 
         body {
-            background-color: var(--bg);
-            color: #fff;
-            font-family: 'Space Mono', monospace;
-            padding: 50px 20px;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 0);
-            background-size: 28px 28px;
         }
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
         }
 
-        /* Topo / Cabeçalho da Loja de Discos */
-        .store-header {
+        /* Header refinado sem excessos */
+        header {
             text-align: center;
-            margin-bottom: 60px;
-            border-bottom: 2px dashed rgba(255, 255, 255, 0.12);
-            padding-bottom: 40px;
+            margin-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 30px;
         }
 
-        .store-header h1 {
-            font-family: 'Anton', sans-serif;
-            font-size: clamp(2.8rem, 6vw, 5.5rem);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #fff;
-            text-shadow: 0 0 25px rgba(255, 255, 255, 0.15), 0 0 50px rgba(0, 255, 119, 0.1);
-            margin-bottom: 10px;
-        }
-
-        .store-header p {
-            font-size: 0.9rem;
-            color: #888;
-            letter-spacing: 3px;
+        header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            margin-bottom: 6px;
             text-transform: uppercase;
         }
 
-        /* Grade da Prateleira de LPs */
+        header p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--orange-accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* Prateleira / Grid de Capas */
         .shelf-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 60px;
+            gap: 50px;
         }
 
         @media (min-width: 768px) {
             .shelf-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 70px 50px;
+                gap: 60px 40px;
             }
         }
 
-        @media (min-width: 1024px) {
-            .shelf-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 80px 60px;
-            }
-        }
-
-        /* Item do Álbum */
-        .album-item {
-            text-decoration: none;
-            color: inherit;
+        /* Item de Álbum / Fita / Vinil */
+        .album-card {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
             display: flex;
             flex-direction: column;
             gap: 16px;
-            cursor: pointer;
+            width: 100%;
         }
 
-        .album-sleeve-box {
+        .sleeve-container {
             position: relative;
             width: 100%;
             aspect-ratio: 1 / 1;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: visible;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease;
         }
 
-        /* O Disco de Vinil saindo para a direita com movimento */
-        .vinyl-record {
+        /* O Disco de Vinil interno que desliza para fora ao interagir */
+        .vinyl-disc {
             position: absolute;
             top: 4%;
-            right: -18%;
+            right: -15%;
             width: 92%;
             height: 92%;
             background: radial-gradient(circle, #0a0a0c 0%, #1a1a1e 35%, #050507 36%, #111 65%, #000 100%);
             border-radius: 50%;
             z-index: 1;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.9), inset 0 0 20px rgba(255,255,255,0.06);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .vinyl-record::before {
+        .vinyl-disc::before {
             content: '';
             position: absolute;
             inset: 15%;
             border-radius: 50%;
-            border: 1px dashed rgba(255,255,255,0.06);
+            border: 1px dashed rgba(255,255,255,0.05);
         }
 
-        /* Rótulo Central do Disco */
-        .vinyl-center-label {
+        .vinyl-label {
             width: 38%;
             height: 38%;
             border-radius: 50%;
+            background: var(--orange-gradient);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.8);
-            z-index: 2;
-            border: 3px solid rgba(255,255,255,0.25);
-            padding: 4px;
-        }
-
-        .vinyl-center-label small {
             font-family: 'Space Mono', monospace;
-            font-size: 0.45rem;
-            opacity: 0.85;
-            margin-top: 2px;
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255,255,255,0.3);
         }
 
-        /* A Capa do LP com Faixa Lateral Neon e espaço para imagem futura */
+        /* A Capa Frontal do Álbum */
         .album-jacket {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, #101016 0%, #08080c 100%);
-            border-radius: 8px;
+            background: #141210;
+            border-radius: 4px;
             z-index: 3;
-            padding: 28px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
             overflow: hidden;
         }
 
-        /* Faixa Lateral Neon */
-        .album-jacket::before {
-            content: '';
+        /* Faixas coloridas clássicas estilo anos 70/80 no topo da capa */
+        .retro-stripes {
             position: absolute;
-            left: 0;
             top: 0;
-            bottom: 0;
-            width: 10px;
-            border-top-left-radius: 8px;
-            border-bottom-left-radius: 8px;
-        }
-
-        /* Se você colocar uma tag <img> de fundo no futuro, ela encaixará aqui perfeitamente */
-        .jacket-art-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            opacity: 0.15; /* Deixa sutil até você subir a imagem definitiva */
-            background-size: cover;
-            background-position: center;
-        }
-
-        .jacket-content {
-            position: relative;
-            z-index: 2;
-            height: 100%;
+            left: 0;
+            right: 0;
+            height: 8px;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        }
+        .retro-stripes span { flex: 1; height: 100%; }
+        .stripe-1 { background: var(--retro-stripe-1); }
+        .stripe-2 { background: var(--retro-stripe-2); }
+        .stripe-3 { background: var(--retro-stripe-3); }
+        .stripe-4 { background: var(--retro-stripe-4); }
+
+        .album-card:hover .vinyl-disc,
+        .album-card:active .vinyl-disc {
+            transform: translateX(18px) rotate(12deg);
         }
 
-        /* Cores Neon específicas de cada LP */
-        .lp-red .vinyl-center-label { background: var(--neon-red); color: #000; }
-        .lp-red .album-jacket::before { background: var(--neon-red); box-shadow: 0 0 15px var(--neon-red); }
-        .lp-red:hover .album-jacket { box-shadow: 0 0 30px rgba(255, 42, 42, 0.35); border-color: var(--neon-red); }
-
-        .lp-green .vinyl-center-label { background: var(--neon-green); color: #000; }
-        .lp-green .album-jacket::before { background: var(--neon-green); box-shadow: 0 0 15px var(--neon-green); }
-        .lp-green:hover .album-jacket { box-shadow: 0 0 30px rgba(0, 255, 119, 0.35); border-color: var(--neon-green); }
-
-        .lp-orange .vinyl-center-label { background: var(--neon-orange); color: #000; }
-        .lp-orange .album-jacket::before { background: var(--neon-orange); box-shadow: 0 0 15px var(--neon-orange); }
-        .lp-orange:hover .album-jacket { box-shadow: 0 0 30px rgba(255, 136, 0, 0.35); border-color: var(--neon-orange); }
-
-        .lp-purple .vinyl-center-label { background: var(--neon-purple); color: #fff; }
-        .lp-purple .album-jacket::before { background: var(--neon-purple); box-shadow: 0 0 15px var(--neon-purple); }
-        .lp-purple:hover .album-jacket { box-shadow: 0 0 30px rgba(153, 0, 255, 0.35); border-color: var(--neon-purple); }
-
-        /* Movimento ao interagir */
-        .album-item:hover .vinyl-record,
-        .album-item:active .vinyl-record {
-            transform: translateX(24px) rotate(18deg);
+        .album-card:hover .sleeve-container {
+            transform: translateY(-4px);
         }
 
-        .album-item:hover .album-jacket {
-            transform: translateY(-6px);
-        }
-
-        /* Tipografia da Capa */
-        .jacket-header {
+        .jacket-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-left: 8px;
+            margin-top: 6px;
         }
 
-        .track-tag {
-            font-size: 0.75rem;
-            font-weight: 700;
+        .track-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #888;
         }
 
-        .album-jacket h2 {
+        .jacket-body h2 {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+            font-size: 1.4rem;
             font-weight: 800;
-            color: #fff;
-            line-height: 1.1;
-            margin: 15px 0 8px 8px;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 8px;
             text-transform: uppercase;
         }
 
-        .jacket-footer {
-            padding-left: 8px;
+        .jacket-body p {
             font-size: 0.8rem;
-            color: #aaa;
-            letter-spacing: 1px;
+            color: var(--orange-accent);
+            font-family: 'Space Mono', monospace;
         }
 
-        /* Detalhes abaixo da capa */
-        .album-meta-box {
+        .jacket-bottom {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Descrição externa do álbum */
+        .album-meta {
             display: flex;
             flex-direction: column;
             gap: 4px;
-            padding-left: 4px;
         }
 
-        .album-title-main {
+        .album-title {
             font-family: 'Syne', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
         .album-subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Tela do Tocador / Detalhes do Projeto (Oculta por padrão) */
+        #player-view {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .player-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 20px;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-primary);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .project-content-box {
+            background: var(--surface-color);
+            border-radius: 6px;
+            padding: 32px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .project-content-box h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .project-content-box .meta-tag {
+            font-family: 'Space Mono', monospace;
             font-size: 0.8rem;
-            color: #777;
-            letter-spacing: 0.5px;
+            color: var(--orange-accent);
+            margin-bottom: 24px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .project-content-box .copy-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #d1cbc1;
+            margin-bottom: 20px;
+            white-space: pre-line;
         }
 
         footer {
-            margin-top: 100px;
+            margin-top: 80px;
             text-align: center;
-            font-size: 0.75rem;
-            color: #555;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
             letter-spacing: 2px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding-top: 35px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 30px;
             width: 100%;
             text-transform: uppercase;
         }
@@ -299,118 +359,149 @@
 <body>
 
     <div class="container">
-        <!-- Cabeçalho Estilo Cartaz Analógico -->
-        <header class="store-header">
-            <h1>Diskoteca de Redação</h1>
-            <p>Maycon Maia &bull; Coleção de LPs &amp; Copywriting</p>
+        <!-- Header minimalista e sofisticado -->
+        <header>
+            <h1>Maycon Maia</h1>
+            <p>Creative Copywriter</p>
         </header>
 
-        <!-- Prateleira de LPs -->
-        <div class="shelf-grid">
-            <!-- Álbum 1 (Vermelho Neon) -->
-            <a href="#" class="album-item lp-red">
-                <div class="album-sleeve-box">
-                    <div class="vinyl-record">
-                        <div class="vinyl-center-label">
-                            FUTURO<br><small>LADO A</small>
-                        </div>
-                    </div>
-                    <div class="album-jacket">
-                        <!-- Espaço reservado para quando você subir sua imagem de capa futura -->
-                        <!-- <div class="jacket-art-bg" style="background-image: url('assets/capa-1.jpg');"></div> -->
-                        <div class="jacket-content">
-                            <div class="jacket-header">
-                                <span class="track-tag">Faixa 01</span>
-                                <span style="font-size: 0.7rem; color: var(--neon-red); font-weight: bold;">● STEREO</span>
-                            </div>
-                            <h2>O Futuro Analógico</h2>
-                            <div class="jacket-footer">Roteiro para TV &bull; Direção de Copy</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="album-meta-box">
-                    <span class="album-title-main">Campanha "O Futuro Analógico"</span>
-                    <span class="album-subtitle">Tom: Audacioso &bull; Alta Performance</span>
-                </div>
-            </a>
+        <!-- VISÃO DA HOME (Prateleira de LPs) -->
+        <div id="home-view">
+            <div class="section-label">Prateleira de Projetos &bull; Selecione uma faixa</div>
 
-            <!-- Álbum 2 (Verde Neon) -->
-            <a href="#" class="album-item lp-green">
-                <div class="album-sleeve-box">
-                    <div class="vinyl-record">
-                        <div class="vinyl-center-label">
-                            ECOBEAT<br><small>LADO A</small>
+            <div class="shelf-grid">
+                <!-- Álbum 1 -->
+                <button class="album-card" onclick="openProject(1)">
+                    <div class="sleeve-container">
+                        <div class="vinyl-disc">
+                            <div class="vinyl-label">Lado A<br>01</div>
                         </div>
-                    </div>
-                    <div class="album-jacket">
-                        <!-- <div class="jacket-art-bg" style="background-image: url('assets/capa-2.jpg');"></div> -->
-                        <div class="jacket-content">
-                            <div class="jacket-header">
-                                <span class="track-tag">Faixa 02</span>
-                                <span style="font-size: 0.7rem; color: var(--neon-green); font-weight: bold;">● STEREO</span>
+                        <div class="album-jacket">
+                            <div class="retro-stripes">
+                                <span class="stripe-1"></span>
+                                <span class="stripe-2"></span>
+                                <span class="stripe-3"></span>
+                                <span class="stripe-4"></span>
                             </div>
-                            <h2>EcoBeat Sound</h2>
-                            <div class="jacket-footer">Manifesto de Marca &bull; Brand Voice</div>
+                            <div class="jacket-top">
+                                <span class="track-number">Faixa 01</span>
+                            </div>
+                            <div class="jacket-body">
+                                <h2>O Futuro Analógico</h2>
+                                <p>Roteiro para TV</p>
+                            </div>
+                            <div class="jacket-bottom">Hi-Fi Stereo</div>
                         </div>
                     </div>
-                </div>
-                <div class="album-meta-box">
-                    <span class="album-title-main">Manifesto EcoBeat</span>
-                    <span class="album-subtitle">Tom: Inspirador &bull; Conexão Profunda</span>
-                </div>
-            </a>
+                    <div class="album-meta">
+                        <span class="album-title">Campanha "O Futuro Analógico"</span>
+                        <span class="album-subtitle">Tom: Audacioso &bull; Direção de Copy</span>
+                    </div>
+                </button>
 
-            <!-- Álbum 3 (Laranja Neon) -->
-            <a href="#" class="album-item lp-orange">
-                <div class="album-sleeve-box">
-                    <div class="vinyl-record">
-                        <div class="vinyl-center-label">
-                            CASSETE<br><small>LADO B</small>
+                <!-- Álbum 2 -->
+                <button class="album-card" onclick="openProject(2)">
+                    <div class="sleeve-container">
+                        <div class="vinyl-disc">
+                            <div class="vinyl-label">Lado A<br>02</div>
                         </div>
-                    </div>
-                    <div class="album-jacket">
-                        <!-- <div class="jacket-art-bg" style="background-image: url('assets/capa-3.jpg');"></div> -->
-                        <div class="jacket-content">
-                            <div class="jacket-header">
-                                <span class="track-tag">Faixa 03</span>
-                                <span style="font-size: 0.7rem; color: var(--neon-orange); font-weight: bold;">● STEREO</span>
+                        <div class="album-jacket">
+                            <div class="retro-stripes">
+                                <span class="stripe-1"></span>
+                                <span class="stripe-2"></span>
+                                <span class="stripe-3"></span>
+                                <span class="stripe-4"></span>
                             </div>
-                            <h2>SoundCassete</h2>
-                            <div class="jacket-footer">Social Media &amp; Campanha Digital</div>
+                            <div class="jacket-top">
+                                <span class="track-number">Faixa 02</span>
+                            </div>
+                            <div class="jacket-body">
+                                <h2>EcoBeat Sound</h2>
+                                <p>Manifesto de Marca</p>
+                            </div>
+                            <div class="jacket-bottom">Hi-Fi Stereo</div>
                         </div>
                     </div>
-                </div>
-                <div class="album-meta-box">
-                    <span class="album-title-main">Lançamento SoundCassete</span>
-                    <span class="album-subtitle">Tom: Irônico &bull; Engajamento Máximo</span>
-                </div>
-            </a>
+                    <div class="album-meta">
+                        <span class="album-title">Manifesto EcoBeat</span>
+                        <span class="album-subtitle">Tom: Inspirador &bull; Brand Voice</span>
+                    </div>
+                </button>
 
-            <!-- Álbum 4 (Roxo Neon) -->
-            <a href="#" class="album-item lp-purple">
-                <div class="album-sleeve-box">
-                    <div class="vinyl-record">
-                        <div class="vinyl-center-label">
-                            MADRUGADA<br><small>LADO B</small>
+                <!-- Álbum 3 -->
+                <button class="album-card" onclick="openProject(3)">
+                    <div class="sleeve-container">
+                        <div class="vinyl-disc">
+                            <div class="vinyl-label">Lado B<br>03</div>
                         </div>
-                    </div>
-                    <div class="album-jacket">
-                        <!-- <div class="jacket-art-bg" style="background-image: url('assets/capa-4.jpg');"></div> -->
-                        <div class="jacket-content">
-                            <div class="jacket-header">
-                                <span class="track-tag">Faixa 04</span>
-                                <span style="font-size: 0.7rem; color: var(--neon-purple); font-weight: bold;">● STEREO</span>
+                        <div class="album-jacket">
+                            <div class="retro-stripes">
+                                <span class="stripe-1"></span>
+                                <span class="stripe-2"></span>
+                                <span class="stripe-3"></span>
+                                <span class="stripe-4"></span>
                             </div>
-                            <h2>Crônicas da Noite</h2>
-                            <div class="jacket-footer">Conteúdo Autoral &bull; Poético</div>
+                            <div class="jacket-top">
+                                <span class="track-number">Faixa 03</span>
+                            </div>
+                            <div class="jacket-body">
+                                <h2>SoundCassete</h2>
+                                <p>Social Media</p>
+                            </div>
+                            <div class="jacket-bottom">Hi-Fi Stereo</div>
                         </div>
                     </div>
+                    <div class="album-meta">
+                        <span class="album-title">Lançamento SoundCassete</span>
+                        <span class="album-subtitle">Tom: Irônico &bull; Campanha Digital</span>
+                    </div>
+                </button>
+
+                <!-- Álbum 4 -->
+                <button class="album-card" onclick="openProject(4)">
+                    <div class="sleeve-container">
+                        <div class="vinyl-disc">
+                            <div class="vinyl-label">Lado B<br>04</div>
+                        </div>
+                        <div class="album-jacket">
+                            <div class="retro-stripes">
+                                <span class="stripe-1"></span>
+                                <span class="stripe-2"></span>
+                                <span class="stripe-3"></span>
+                                <span class="stripe-4"></span>
+                            </div>
+                            <div class="jacket-top">
+                                <span class="track-number">Faixa 04</span>
+                            </div>
+                            <div class="jacket-body">
+                                <h2>Crônicas da Noite</h2>
+                                <p>Conteúdo Autoral</p>
+                            </div>
+                            <div class="jacket-bottom">Hi-Fi Stereo</div>
+                        </div>
+                    </div>
+                    <div class="album-meta">
+                        <span class="album-title">Crônicas da Madrugada</span>
+                        <span class="album-subtitle">Tom: Poético &bull; Narrativa Cativante</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- VISÃO DO TOCADOR / DETALHES DO PROJETO -->
+        <div id="player-view">
+            <div class="player-header">
+                <button class="back-btn" onclick="goHome()">← Voltar à Prateleira</button>
+                <span style="font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-secondary);" id="player-track-info">Tocando Faixa 01</span>
+            </div>
+            
+            <div class="project-content-box">
+                <span class="meta-tag" id="project-meta-tag">Roteiro para TV &bull; Tom: Audacioso</span>
+                <h2 id="project-title">Campanha "O Futuro Analógico"</h2>
+                <div class="copy-text" id="project-body-text">
+                    [Aqui entrará o texto completo da sua campanha, roteiro ou manifesto. Você poderá editar facilmente este conteúdo a qualquer momento para apresentar o seu melhor trabalho com a profundidade que as agências exigem.]
                 </div>
-                <div class="album-meta-box">
-                    <span class="album-title-main">Crônicas da Madrugada</span>
-                    <span class="album-subtitle">Tom: Poético &bull; Narrativa Cativante</span>
-                </div>
-            </a>
+            </div>
         </div>
 
         <footer>
@@ -418,5 +509,24 @@
         </footer>
     </div>
 
-</body>
-</html>
+    <script>
+        // Dados dos projetos para o tocador
+        const projects = {
+            1: {
+                title: 'Campanha "O Futuro Analógico"',
+                meta: 'Roteiro para TV • Tom: Audacioso • Direção de Copy',
+                text: `[LOCUÇÃO EM OFF - TOM GRAVE E NOSTÁLGICO]\n\n"A gente acelerou tanto o passo que esqueceu onde deixou o ritmo.\nTelas que brilham, mas não iluminam. Toques que respondem, mas não sentem.\n\nE se o futuro que a gente tanto procura estivesse guardado na fita magnética que você deixou na gaveta?"\n\n[TRILHA: SYNTHWAVE CRESCENTE COM BAIXO ANÁLOGICO]\n\n"Voltar ao analógico não é retrocesso. É precisão. É dar espaço para a mensagem respirar antes de chegar ao coração de quem consome."\n\nMaycon Maia. Copywriting com frequência de vinil.`
+            },
+            2: {
+                title: 'Manifesto EcoBeat',
+                meta: 'Manifesto de Marca • Tom: Inspirador • Brand Voice',
+                text: `O som da terra não é silencioso. Ele pulsa no ritmo de quem decide fazer diferente.\n\nA EcoBeat nasce da convicção de que marcas com propósito não precisam gritar para serem ouvidas — elas precisam afinar o tom com o planeta.\n\nMenos ruído. Mais eco.\n\nPorque sustentabilidade de verdade não é campanha de estação. É a frequência em que a sua marca opera todos os dias.`
+            },
+            3: {
+                title: 'Lançamento SoundCassete',
+                meta: 'Social Media • Tom: Irônico • Campanha Digital',
+                text: `Enquanto o mercado gasta 3 horas discutindo a métrica do story de 5 segundos, tem gente com saudades de ouvir um lado inteiro de uma fita sem pular faixa.\n\nChegou a SoundCassete.\n\nPara quem prefere conteúdo com corpo, alma e um leve chiado de chiado analógico que prova que tem ser humano por trás do post.\n\nOuça por sua conta e risco.`
+            },
+            4: {
+                title: 'Crônicas da Madrugada',
+                meta: 'Conteúdo Au
