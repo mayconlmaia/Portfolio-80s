@@ -11,7 +11,6 @@
             --surface-color: #12100e;
             --text-primary: #f5f2eb;
             --text-secondary: #8c857b;
-            --orange-primary: #d9531e;
         }
 
         * {
@@ -58,7 +57,7 @@
         header p {
             font-family: 'Space Mono', monospace;
             font-size: 0.75rem;
-            color: var(--orange-primary);
+            color: #d9531e;
             letter-spacing: 4px;
             text-transform: uppercase;
         }
@@ -164,7 +163,6 @@
             color: #fff;
             letter-spacing: 1px;
             text-transform: uppercase;
-            background: linear-gradient(135deg, #d9531e 0%, #702004 100%);
             box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
             border: 2px solid rgba(255,255,255,0.3);
         }
@@ -214,7 +212,7 @@
 
         .jacket-body h2 {
             font-family: 'Syne', sans-serif;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--text-primary);
             line-height: 1.15;
@@ -225,7 +223,6 @@
         .jacket-body p {
             font-size: 0.75rem;
             font-family: 'Space Mono', monospace;
-            color: var(--orange-primary);
         }
 
         .album-meta {
@@ -248,7 +245,7 @@
         }
 
         /* ==========================================
-           TELA DO PROJETO: LAYOUT DIVIDIDO MODULAR
+           TELA DO PROJETO: LAYOUT DINÂMICO MODULAR COM COR EXCLUSIVA
            ========================================== */
         #project-view {
             display: none;
@@ -342,7 +339,6 @@
             width: 40%;
             height: 40%;
             border-radius: 50%;
-            background: linear-gradient(135deg, #d9531e 0%, #702004 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -367,9 +363,8 @@
             text-transform: uppercase;
         }
 
-        /* Pôster Editorial */
+        /* Pôster Editorial Dinâmico (Sua cor varia por projeto) */
         .editorial-poster {
-            background: #a8201a;
             color: #12100e;
             border-radius: 6px;
             padding: 35px 25px;
@@ -411,9 +406,9 @@
             opacity: 0.85;
         }
 
-        /* Bloco de Contexto (Lorem Ipsum / Sobre o Trabalho) */
+        /* Bloco de Contexto (Briefing / Lorem Ipsum) */
         .poster-context-box {
-            background: rgba(18, 16, 14, 0.85);
+            background: rgba(18, 16, 14, 0.88);
             color: #f5f2eb;
             padding: 22px;
             border-radius: 4px;
@@ -421,13 +416,12 @@
             font-size: 0.9rem;
             line-height: 1.6;
             font-family: 'DM Sans', sans-serif;
-            border-left: 3px solid var(--orange-primary);
+            border-left: 3px solid #12100e;
         }
 
         .poster-context-box strong {
             font-family: 'Space Mono', monospace;
             font-size: 0.7rem;
-            color: var(--orange-primary);
             text-transform: uppercase;
             display: block;
             margin-bottom: 6px;
@@ -474,11 +468,11 @@
         .tv-placeholder-text {
             font-family: 'Space Mono', monospace;
             font-size: 0.7rem;
-            color: #d9531e;
             text-transform: uppercase;
             letter-spacing: 1px;
             text-align: center;
             padding: 15px;
+            color: #fff;
         }
 
         .tv-controls-bar {
@@ -509,7 +503,6 @@
         .graphics-title {
             font-family: 'Space Mono', monospace;
             font-size: 0.7rem;
-            color: #e09f3e;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 12px;
@@ -531,14 +524,14 @@
             background: #1c1815;
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 4px;
-            height: 140px;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             font-family: 'Space Mono', monospace;
             font-size: 0.65rem;
-            color: #8c857b;
+            color: #ccc;
             padding: 10px;
             text-transform: uppercase;
         }
@@ -559,7 +552,6 @@
         .cassette-label-top {
             font-family: 'Space Mono', monospace;
             font-size: 0.65rem;
-            color: #e09f3e;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 6px;
@@ -610,7 +602,6 @@
         }
 
         .play-audio-btn {
-            background: #d9531e;
             color: #fff;
             border: none;
             font-family: 'Space Mono', monospace;
@@ -621,11 +612,11 @@
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: background 0.2s;
+            transition: opacity 0.2s;
         }
 
         .play-audio-btn:hover {
-            background: #b3390c;
+            opacity: 0.85;
         }
 
         /* 4. CÓPIA / ROTEIRO ORIGINAL */
@@ -640,7 +631,6 @@
         .poster-copy-box h3 {
             font-family: 'Space Mono', monospace;
             font-size: 0.7rem;
-            color: var(--orange-primary);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
@@ -676,7 +666,7 @@
             <p>Creative Copywriter</p>
         </header>
 
-        <!-- HOME: Prateleira de LPs (10 Trabalhos) -->
+        <!-- HOME: Prateleira de LPs (10 Trabalhos com Cores Diferenciadas) -->
         <div id="home-view">
             <div class="section-label">Prateleira de LPs &bull; Selecione um trabalho (1 a 10)</div>
             <div class="shelf-grid" id="shelf-container"></div>
@@ -684,4 +674,270 @@
 
         <!-- TELA DO PROJETO: LAYOUT DINÂMICO MODULAR -->
         <div id="project-view">
-            <div class="project-
+            <div class="project-nav-bar">
+                <button class="back-btn" onclick="goHome()">← Voltar à Prateleira</button>
+                <span style="font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-secondary);" id="project-code-label">Faixa 01 &bull; Stereo</span>
+            </div>
+            
+            <div class="project-split-layout">
+                <!-- Coluna Esquerda: O Vinil Exposto -->
+                <div class="project-vinyl-showcase">
+                    <div class="giant-sleeve">
+                        <div id="giant-sleeve-bg" style="position:absolute; inset:0; padding:20px; display:flex; flex-direction:column; justify-content:space-between; border-radius:6px; z-index:2;">
+                            <div id="giant-stripes-top" style="height:6px; display:flex;"></div>
+                            <div>
+                                <span style="font-family:'Space Mono'; font-size:0.6rem; color:#fff; opacity:0.8;" id="showcase-track-num">FAIXA 01</span>
+                                <h3 style="font-family:'Syne'; font-size:1.1rem; color:#fff; text-transform:uppercase; margin-top:4px;" id="showcase-album-title">O Futuro Analógico</h3>
+                            </div>
+                            <span style="font-family:'Space Mono'; font-size:0.6rem; color:#fff; opacity:0.8;" id="showcase-stereo-label">HI-FI STEREO</span>
+                        </div>
+                        <div class="giant-vinyl-out">
+                            <div class="giant-label" id="giant-label-text">LADO A<br><small>01</small></div>
+                        </div>
+                    </div>
+                    <div class="vinyl-meta-info" id="vinyl-meta-text">Prensagem Original • 2026</div>
+                </div>
+
+                <!-- Coluna Direita: Pôster Editorial com Blocos Modulares e Cor Exclusiva -->
+                <div class="editorial-poster" id="editorial-poster-box">
+                    <div class="poster-top-meta">
+                        <span id="poster-location-date">SÃO PAULO &bull; CAMPANHA</span>
+                        <span>MAYCON MAIA CO.</span>
+                    </div>
+
+                    <h2 class="poster-title" id="poster-title-text">Título do Trabalho</h2>
+                    <div class="poster-subtitle" id="poster-subtitle-text">Tom &bull; Categoria</div>
+
+                    <!-- Bloco de Contexto (Lorem Ipsum) -->
+                    <div class="poster-context-box" id="poster-context-box-el">
+                        <strong id="context-strong-el">Sobre o Projeto / Briefing</strong>
+                        <span id="poster-lorem-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                    </div>
+
+                    <!-- MÓDULO 1: VÍDEO (TV Retrô) -->
+                    <div class="modular-section" id="mod-video" style="display:none;">
+                        <div class="retro-tv-container">
+                            <div class="tv-screen" id="tv-screen-box">
+                                <div class="tv-placeholder-text">[ TV RETRÔ &bull; VÍDEO DA CAMPANHA ]</div>
+                            </div>
+                            <div class="tv-controls-bar">
+                                <span class="tv-brand">MODEL TR-80</span>
+                                <span style="font-family: 'Space Mono'; font-size: 0.55rem; color: #8c857b;">● REC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULO 2: ARTES GRÁFICAS -->
+                    <div class="modular-section" id="mod-graphics" style="display:none;">
+                        <div class="graphics-gallery" id="graphics-gallery-el">
+                            <div class="graphics-title" id="graphics-title-el">Artes Gráficas (Banners & Outdoors)</div>
+                            <div class="graphics-grid" id="graphics-grid-box"></div>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULO 3: JINGLE / ÁUDIO (Toca-Fitas) -->
+                    <div class="modular-section" id="mod-audio" style="display:none;">
+                        <div class="cassette-player-container">
+                            <div class="cassette-label-top">
+                               <span id="cassette-top-text">DECK STEREO • JINGLE / ÁUDIO</span>
+                               <span>HI-FI</span>
+                            </div>
+                            <div class="cassette-body">
+                                <div class="cassette-window">
+                                    <div class="tape-spool"></div>
+                                    <div style="font-family: 'Space Mono'; font-size: 0.6rem; letter-spacing: 1px;" id="tape-middle-text">MAGNETIC TAPE</div>
+                                    <div class="tape-spool"></div>
+                                </div>
+                                <div class="cassette-audio-controls">
+                                    <span style="font-family: 'Space Mono'; font-size: 0.6rem; color: #8c857b;" id="audio-label-text">Spot de Rádio / Jingle</span>
+                                    <button class="play-audio-btn" id="play-audio-btn-el" onclick="toggleAudio()">▶ PLAY ÁUDIO</button>
+                                </div>
+                            </div>
+                            <div style="font-family: 'Space Mono'; font-size: 0.5rem; color: #8c857b; text-align:center;">DOLBY SYSTEM</div>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULO 4: CÓPIA / ROTEIRO ORIGINAL -->
+                    <div class="modular-section">
+                        <div class="poster-copy-box" id="poster-copy-box-el">
+                            <h3 id="copy-box-title-el">Roteiro &bull; Cópia Original</h3>
+                            <div class="poster-copy-text" id="poster-copy-content">[Texto do projeto]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Maycon Maia &bull; Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        // 10 Trabalhos com Paletas Cromaticas Exclusivas (Degradês Analógicos e Cores Diferentes)
+        const projectsData = {
+            1: { 
+                title: 'O Futuro Analógico', sub: 'Roteiro para TV • Tom: Audacioso', loc: 'SÃO PAULO • CAMPANHA TV', 
+                colorBg: '#b3390c', colorGradient: 'linear-gradient(135deg, #d9531e 0%, #702004 100%)', stripes: ['#d9531e', '#e09f3e', '#b3390c', '#335c67'],
+                lorem: 'O desafio criativo consistiu em resgatar a narrativa de TV aberta sob um prisma analógico, provocando o espectador a desacelerar em um mundo hiperconectado.',
+                hasVideo: true, videoHtml: '[SIMULAÇÃO VÍDEO COMERCIAL TV 30s]',
+                hasGraphics: true, graphics: ['Banner Home 1080x1080', 'Outdoor OOH Marginal Pinheiros'],
+                hasAudio: false,
+                copy: 'A gente acelerou tanto o passo que esqueceu onde deixou o ritmo.\nTelas que brilham, mas não iluminam...\n\nMaycon Maia.' 
+            },
+            2: { 
+                title: 'Manifesto EcoBeat', sub: 'Manifesto de Marca • Tom: Inspirador', loc: 'BRAND VOICE • SUSTENTABILIDADE', 
+                colorBg: '#2f855a', colorGradient: 'linear-gradient(135deg, #38a169 0%, #1c4532 100%)', stripes: ['#2f855a', '#48bb78', '#22543d', '#d69e2e'],
+                lorem: 'Este manifesto deu voz à linha sustentável da marca, equilibrando tom corporativo e poesia ecológica com precisão cirúrgica.',
+                hasVideo: false,
+                hasGraphics: true, graphics: ['Encarte Revista Colecionador', 'Carrossel Institucional'],
+                hasAudio: true, audioLabel: 'Locução Oficial do Manifesto (30s)',
+                copy: 'O som da terra não é silencioso. Ele pulsa no ritmo de quem decide fazer diferente.\n\nMenos ruído. Mais eco.' 
+            },
+            3: { 
+                title: 'Lançamento SoundCassete', sub: 'Social Media • Tom: Irônico', loc: 'DIGITAL • LANÇAMENTO', 
+                colorBg: '#2b6cb0', colorGradient: 'linear-gradient(135deg, #3182ce 0%, #1a365d 100%)', stripes: ['#2b6cb0', '#63b3ed', '#1a365d', '#d53f8c'],
+                lorem: 'Uma campanha de lançamento voltada para o ambiente digital, usando tiradas irônicas sobre a pressa das redes sociais.',
+                hasVideo: true, videoHtml: '[SIMULAÇÃO VÍDEO REELS / TIKTOK]',
+                hasGraphics: false,
+                hasAudio: true, audioLabel: 'Jingle Irônico Curto (15s)',
+                copy: 'Enquanto o mercado gasta 3 horas discutindo métrica de story, tem gente com saudades de ouvir um lado inteiro de fita.' 
+            },
+            4: { 
+                title: 'Crônicas da Madrugada', sub: 'Conteúdo Autoral • Tom: Poético', loc: 'NARRATIVA • AUTORAL', 
+                colorBg: '#702459', colorGradient: 'linear-gradient(135deg, #b83280 0%, #4a0e4e 100%)', stripes: ['#b83280', '#d53f8c', '#702459', '#4a0e4e'],
+                lorem: 'Curadoria de textos intimistas criados no silêncio da noite, explorando a sensibilidade e a escuta ativa.',
+                hasVideo: false, hasGraphics: false, hasAudio: true, audioLabel: 'Podcast / Audiobook Poético',
+                copy: 'Tem horas em que o algoritmo dorme e a inspiração acorda.' 
+            },
+            5: { 
+                title: 'Sons do Asfalto', sub: 'Locução & Jingle • Tom: Urbano', loc: 'CAMPANHA DE RÁDIO', 
+                colorBg: '#b7791f', colorGradient: 'linear-gradient(135deg, #d69e2e 0%, #744210 100%)', stripes: ['#d69e2e', '#ecc94b', '#b7791f', '#2d3748'],
+                lorem: 'Criação sonora completa e jingle marcante para rádio, traduzindo o barulho e a energia da metrópole.',
+                hasVideo: false, hasGraphics: true, graphics: ['Anúncio Impresso Jornais'], hasAudio: true, audioLabel: 'Jingle Comercial Completo (30s)',
+                copy: 'O barulho da metrópole em formato de batida sonora.' 
+            },
+            6: { title: 'Revolta do Vinil', sub: 'Brand Activism • Tom: Provocativo', loc: 'AÇÃO DE RUA / OOH', colorBg: '#9b2c2c', colorGradient: 'linear-gradient(135deg, #e53e3e 0%, #63171b 100%)', stripes: ['#e53e3e', '#fc8181', '#9b2c2c', '#1a202c'], lorem: 'Campanha de guerrilha e ativação urbana para o dia do disco.', hasVideo: true, videoHtml: '[SIMULAÇÃO CASE VÍDEO OOH]', hasGraphics: true, graphics: ['Outdoor Duplo Estrada', 'Cartazes Metro'], hasAudio: false, copy: 'A contracultura não morreu, ela só mudou de frequência.' },
+            7: { title: 'Noite Neon', sub: 'Copywriting Cultural • Tom: Hipnótico', loc: 'EVENTOS & ENTRETENIMENTO', colorBg: '#44337a', colorGradient: 'linear-gradient(135deg, #6b46c1 0%, #22194d 100%)', stripes: ['#6b46c1', '#9f7aea', '#44337a', '#2d3748'], lorem: 'Copywriting imersivo para circuito de festivais de música eletrônica.', hasVideo: true, videoHtml: '[SIMULAÇÃO TEASER FESTIVAL]', hasGraphics: true, graphics: ['Banner Display Web', 'Flyer Oficial'], hasAudio: false, copy: 'A luz que guia a noite de São Paulo.' },
+            8: { title: 'Fita Isolante', sub: 'Rede Social • Tom: Ácido', loc: 'CAMPANHA DIGI-SOCIAL', colorBg: '#2c5282', colorGradient: 'linear-gradient(135deg, #3182ce 0%, #1a365d 100%)', stripes: ['#3182ce', '#63b3ed', '#2c5282', '#1a202c'], lorem: 'Conteúdo ágil e bem-humorado focado em conversas de Twitter e Threads.', hasVideo: false, hasGraphics: true, graphics: ['Carrossel Twitter (Cards 1 a 5)'], hasAudio: false, copy: 'Quando a gambiarra vira obra de arte.' },
+            9: { title: 'Frequência Oculta', sub: 'Audio Drama • Tom: Misterioso', loc: 'PROJETO EXPERIMENTAL', colorBg: '#285e61', colorGradient: 'linear-gradient(135deg, #319795 0%, #1d4044 100%)', stripes: ['#319795', '#4fd1c5', '#285e61', '#1a202c'], lorem: 'Roteiro de ficção sonora em episódios para plataformas de streaming.', hasVideo: false, hasGraphics: false, hasAudio: true, audioLabel: 'Teaser de Áudio Binaural (3D)', copy: 'Você já parou para ouvir o chiado entre as estações?' },
+            10: { title: 'Última Faixa', sub: 'Manifesto Final • Tom: Épico', loc: 'PORTFÓLIO MASTER', colorBg: '#744210', colorGradient: 'linear-gradient(135deg, #d69e2e 0%, #451a03 100%)', stripes: ['#d69e2e', '#ed8936', '#744210', '#1a202c'], lorem: 'Encerramento de ciclo criativo e consolidação de marca pessoal em grande estilo.', hasVideo: true, videoHtml: '[SIMULAÇÃO FILME INSTITUCIONAL MASTER]', hasGraphics: true, graphics: ['Poster Colecionador Limitado'], hasAudio: true, audioLabel: 'Trilha Sonora Master (Full)', copy: 'O fim de um lado, o começo do próximo.' }
+        };
+
+        // Renderiza os 10 trabalhos na home com suas cores e faixas exclusivas
+        const shelf = document.getElementById('shelf-container');
+        for (let i = 1; i <= 10; i++) {
+            const p = projectsData[i];
+            shelf.innerHTML += `
+                <button class="album-card" onclick="openProject(${i})">
+                    <div class="sleeve-container">
+                        <div class="vinyl-disc">
+                            <div class="vinyl-label" style="background: ${p.colorGradient};">LADO A<br>0${i}</div>
+                        </div>
+                        <div class="album-jacket">
+                            <div class="retro-stripes">
+                                <span style="background:${p.stripes[0]};"></span>
+                                <span style="background:${p.stripes[1]};"></span>
+                                <span style="background:${p.stripes[2]};"></span>
+                                <span style="background:${p.stripes[3]};"></span>
+                            </div>
+                            <div class="jacket-top">
+                                <span class="track-number">FAIXA 0${i < 10 ? '0'+i : i}</span>
+                            </div>
+                            <div class="jacket-body">
+                                <h2>${p.title}</h2>
+                                <p style="color: ${p.stripes[0]};">${p.sub.split('•')[0]}</p>
+                            </div>
+                            <div style="font-family:'Space Mono'; font-size:0.65rem; color:#8c857b;">HI-FI STEREO</div>
+                        </div>
+                    </div>
+                    <div class="album-meta">
+                        <span class="album-title">${p.title}</span>
+                        <span class="album-subtitle">${p.sub}</span>
+                    </div>
+                </button>
+            `;
+        }
+
+        function openProject(id) {
+            const p = projectsData[id];
+            
+            // Aplica a cor única do projeto na página interna
+            document.getElementById('editorial-poster-box').style.background = p.colorBg;
+            document.getElementById('giant-sleeve-bg').style.background = p.colorBg;
+            document.getElementById('giant-label-text').style.background = p.colorGradient;
+            document.getElementById('giant-label-text').innerHTML = `LADO A<br><small>0${id}</small>`;
+            
+            // Atualiza as fitas coloridas da capa gigante lateral
+            const stripesTop = document.getElementById('giant-stripes-top');
+            stripesTop.innerHTML = `
+                <span style="flex:1; background:${p.stripes[0]}"></span>
+                <span style="flex:1; background:${p.stripes[1]}"></span>
+                <span style="flex:1; background:${p.stripes[2]}"></span>
+                <span style="flex:1; background:${p.stripes[3]}"></span>
+            `;
+
+            document.getElementById('showcase-track-num').innerText = `FAIXA 0${id < 10 ? '0'+id : id}`;
+            document.getElementById('showcase-album-title').innerText = p.title;
+            document.getElementById('poster-title-text').innerText = p.title;
+            document.getElementById('poster-subtitle-text').innerText = p.sub;
+            document.getElementById('poster-location-date').innerText = p.loc;
+            document.getElementById('poster-lorem-text').innerText = p.lorem;
+            document.getElementById('poster-copy-content').innerText = p.copy;
+            document.getElementById('project-code-label').innerText = `Faixa 0${id} • Stereo`;
+
+            // Estiliza elementos internos com a cor do projeto
+            document.getElementById('poster-context-box-el').style.borderLeftColor = p.stripes[0];
+            document.getElementById('context-strong-el').style.color = p.stripes[0];
+            document.getElementById('play-audio-btn-el').style.background = p.stripes[0];
+            document.getElementById('graphics-gallery-el').style.borderColor = p.stripes[0];
+            document.getElementById('graphics-title-el').style.color = p.stripes[0];
+
+            // 1. Módulo Vídeo (TV Retrô)
+            const modVideo = document.getElementById('mod-video');
+            if (p.hasVideo) {
+                modVideo.style.display = 'block';
+                document.getElementById('tv-screen-box').innerHTML = `<div class="tv-placeholder-text">${p.video}</div>`;
+            } else {
+                modVideo.style.display = 'none';
+            }
+
+            // 2. Módulo Artes Gráficas
+            const modGraphics = document.getElementById('mod-graphics');
+            if (p.hasGraphics && p.graphics.length > 0) {
+                modGraphics.style.display = 'block';
+                const gridBox = document.getElementById('graphics-grid-box');
+                gridBox.innerHTML = '';
+                p.graphics.forEach(art => {
+                    gridBox.innerHTML += `<div class="graphic-item">${art}</div>`;
+                });
+            } else {
+                modGraphics.style.display = 'none';
+            }
+
+            // 3. Módulo Áudio (Toca-Fitas)
+            const modAudio = document.getElementById('mod-audio');
+            if (p.hasAudio) {
+                modAudio.style.display = 'block';
+                document.getElementById('audio-label-text').innerText = p.audioLabel || 'Spot / Jingle';
+            } else {
+                modAudio.style.display = 'none';
+            }
+
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('project-view').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goHome() {
+            document.getElementById('project-view').style.display = 'none';
+            document.getElementById('home-view').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleAudio() {
+            alert('Deck de Fita ativado! Reproduzindo áudio/jingle do projeto.');
+        }
+    </script>
+</body>
+</html>
