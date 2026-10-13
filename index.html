@@ -7,17 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f0e0d;
-            --surface-color: #181614;
-            --card-bg: #1c1917;
+            --bg-color: #080706;
+            --surface-color: #12100e;
             --text-primary: #f5f2eb;
-            --text-secondary: #a39e93;
-            --orange-gradient: linear-gradient(135deg, #d9531e 0%, #b3390c 50%, #702004 100%);
-            --orange-accent: #e65c00;
-            --retro-stripe-1: #d9531e;
-            --retro-stripe-2: #e09f3e;
-            --retro-stripe-3: #335c67;
-            --retro-stripe-4: #fff3b0;
+            --text-secondary: #8c857b;
+            --orange-primary: #d9531e;
         }
 
         * {
@@ -35,14 +29,15 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1100px;
         }
 
-        /* Header refinado sem excessos */
+        /* Header Minimalista */
         header {
             text-align: center;
             margin-bottom: 50px;
@@ -52,7 +47,7 @@
 
         header h1 {
             font-family: 'Syne', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             color: var(--text-primary);
@@ -62,9 +57,9 @@
 
         header p {
             font-family: 'Space Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--orange-accent);
-            letter-spacing: 3px;
+            font-size: 0.75rem;
+            color: var(--orange-primary);
+            letter-spacing: 4px;
             text-transform: uppercase;
         }
 
@@ -87,21 +82,27 @@
             background: rgba(255,255,255,0.08);
         }
 
-        /* Prateleira / Grid de Capas */
+        /* Prateleira / Grid de Capas na Home (10 Trabalhos) */
         .shelf-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 50px;
+            gap: 40px;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 640px) {
             .shelf-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 60px 40px;
+                gap: 50px 30px;
             }
         }
 
-        /* Item de Álbum / Fita / Vinil */
+        @media (min-width: 1024px) {
+            .shelf-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 50px 30px;
+            }
+        }
+
         .album-card {
             background: transparent;
             border: none;
@@ -109,7 +110,7 @@
             text-align: left;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
             width: 100%;
         }
 
@@ -117,24 +118,22 @@
             position: relative;
             width: 100%;
             aspect-ratio: 1 / 1;
-            background: var(--card-bg);
-            border-radius: 4px;
+            background: #141210;
+            border-radius: 6px;
             overflow: visible;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
         }
 
-        /* O Disco de Vinil interno que desliza para fora ao interagir */
         .vinyl-disc {
             position: absolute;
             top: 4%;
-            right: -15%;
+            right: 0%;
             width: 92%;
             height: 92%;
             background: radial-gradient(circle, #0a0a0c 0%, #1a1a1e 35%, #050507 36%, #111 65%, #000 100%);
             border-radius: 50%;
             z-index: 1;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -154,61 +153,48 @@
             width: 38%;
             height: 38%;
             border-radius: 50%;
-            background: var(--orange-gradient);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             font-family: 'Space Mono', monospace;
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             font-weight: 700;
             color: #fff;
             letter-spacing: 1px;
             text-transform: uppercase;
+            background: linear-gradient(135deg, #d9531e 0%, #702004 100%);
             box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
             border: 2px solid rgba(255,255,255,0.3);
         }
 
-        /* A Capa Frontal do Álbum */
         .album-jacket {
             position: absolute;
             inset: 0;
             background: #141210;
-            border-radius: 4px;
+            border-radius: 6px;
             z-index: 3;
-            padding: 24px;
+            padding: 22px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
             transition: transform 0.3s ease;
             overflow: hidden;
         }
 
-        /* Faixas coloridas clássicas estilo anos 70/80 no topo da capa */
         .retro-stripes {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 8px;
             display: flex;
         }
         .retro-stripes span { flex: 1; height: 100%; }
-        .stripe-1 { background: var(--retro-stripe-1); }
-        .stripe-2 { background: var(--retro-stripe-2); }
-        .stripe-3 { background: var(--retro-stripe-3); }
-        .stripe-4 { background: var(--retro-stripe-4); }
 
-        .album-card:hover .vinyl-disc,
-        .album-card:active .vinyl-disc {
-            transform: translateX(18px) rotate(12deg);
-        }
-
-        .album-card:hover .sleeve-container {
-            transform: translateY(-4px);
+        .album-card:hover .vinyl-disc {
+            transform: translateX(25px) rotate(15deg);
         }
 
         .jacket-top {
@@ -220,7 +206,7 @@
 
         .track-number {
             font-family: 'Space Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-secondary);
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -228,61 +214,54 @@
 
         .jacket-body h2 {
             font-family: 'Syne', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: var(--text-primary);
-            line-height: 1.2;
-            margin-bottom: 8px;
+            line-height: 1.15;
+            margin-bottom: 6px;
             text-transform: uppercase;
         }
 
         .jacket-body p {
-            font-size: 0.8rem;
-            color: var(--orange-accent);
+            font-size: 0.75rem;
             font-family: 'Space Mono', monospace;
+            color: var(--orange-primary);
         }
 
-        .jacket-bottom {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* Descrição externa do álbum */
         .album-meta {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
         }
 
         .album-title {
             font-family: 'Syne', sans-serif;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--text-primary);
         }
 
         .album-subtitle {
             font-family: 'Space Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-secondary);
         }
 
-        /* Tela do Tocador / Detalhes do Projeto (Oculta por padrão) */
-        #player-view {
+        /* ==========================================
+           TELA DO PROJETO: LAYOUT DIVIDIDO MODULAR
+           ========================================== */
+        #project-view {
             display: none;
             width: 100%;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .player-header {
+        .project-nav-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -309,37 +288,369 @@
             background: rgba(255,255,255,0.1);
         }
 
-        .project-content-box {
-            background: var(--surface-color);
+        .project-split-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        @media (min-width: 900px) {
+            .project-split-layout {
+                grid-template-columns: 320px 1fr;
+                gap: 50px;
+            }
+        }
+
+        .project-vinyl-showcase {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .giant-sleeve {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #141210;
             border-radius: 6px;
-            padding: 32px;
-            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: visible;
         }
 
-        .project-content-box h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: var(--text-primary);
+        .giant-vinyl-out {
+            position: absolute;
+            top: 4%;
+            right: -38%;
+            width: 92%;
+            height: 92%;
+            background: radial-gradient(circle, #0a0a0c 0%, #1a1a1e 35%, #050507 36%, #111 65%, #000 100%);
+            border-radius: 50%;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255,255,255,0.12);
         }
 
-        .project-content-box .meta-tag {
+        .giant-label {
+            width: 40%;
+            height: 40%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d9531e 0%, #702004 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             font-family: 'Space Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--orange-accent);
-            margin-bottom: 24px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.5);
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .vinyl-meta-info {
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Pôster Editorial */
+        .editorial-poster {
+            background: #a8201a;
+            color: #12100e;
+            border-radius: 6px;
+            padding: 35px 25px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            border: 2px solid rgba(0,0,0,0.4);
+            background-image: radial-gradient(rgba(0,0,0,0.15) 1px, transparent 0);
+            background-size: 16px 16px;
+        }
+
+        .poster-top-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-bottom: 1px solid rgba(18,16,14,0.3);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .poster-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 0.95;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .poster-subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            opacity: 0.85;
+        }
+
+        /* Bloco de Contexto (Lorem Ipsum / Sobre o Trabalho) */
+        .poster-context-box {
+            background: rgba(18, 16, 14, 0.85);
+            color: #f5f2eb;
+            padding: 22px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-family: 'DM Sans', sans-serif;
+            border-left: 3px solid var(--orange-primary);
+        }
+
+        .poster-context-box strong {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--orange-primary);
+            text-transform: uppercase;
             display: block;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        /* BLOCOS MODULARES DE MÍDIA */
+        .modular-section {
+            margin-bottom: 25px;
+        }
+
+        /* 1. TV RETRÔ (Vídeo) */
+        .retro-tv-container {
+            background: #1a1714;
+            border: 5px solid #2d2621;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: inset 0 6px 12px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.6);
+        }
+
+        .tv-screen {
+            background: #000;
+            border-radius: 4px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #080706;
+        }
+
+        .tv-screen::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 14, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 10;
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .tv-placeholder-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: #d9531e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .tv-controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            padding: 0 2px;
+        }
+
+        .tv-brand {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: #8c857b;
+            text-transform: uppercase;
+        }
+
+        /* 2. ARTES GRÁFICAS (Banners e Outdoors) */
+        .graphics-gallery {
+            background: #141210;
+            border: 2px solid #332d28;
+            border-radius: 8px;
+            padding: 16px;
+            color: #f5f2eb;
+        }
+
+        .graphics-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: #e09f3e;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-bottom: 12px;
         }
 
-        .project-content-box .copy-text {
-            font-size: 0.95rem;
+        .graphics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media(min-width: 600px) {
+            .graphics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .graphic-item {
+            background: #1c1815;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: #8c857b;
+            padding: 10px;
+            text-transform: uppercase;
+        }
+
+        /* 3. TOCA-FITAS (Jingles e Áudio) */
+        .cassette-player-container {
+            background: #221e1a;
+            border: 4px solid #3d342d;
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.8), 0 10px 20px rgba(0,0,0,0.6);
+            color: #f5f2eb;
+        }
+
+        .cassette-label-top {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: #e09f3e;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cassette-body {
+            background: #141210;
+            border-radius: 4px;
+            border: 2px solid #332d28;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cassette-window {
+            width: 100%;
+            background: #080706;
+            border: 2px solid #2d2621;
+            border-radius: 4px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 15px;
+        }
+
+        .tape-spool {
+            width: 22px;
+            height: 22px;
+            border: 3px dashed #8c857b;
+            border-radius: 50%;
+            animation: spinTape 4s linear infinite;
+        }
+
+        @keyframes spinTape {
+            100% { transform: rotate(360deg); }
+        }
+
+        .cassette-audio-controls {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .play-audio-btn {
+            background: #d9531e;
+            color: #fff;
+            border: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 5px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.2s;
+        }
+
+        .play-audio-btn:hover {
+            background: #b3390c;
+        }
+
+        /* 4. CÓPIA / ROTEIRO ORIGINAL */
+        .poster-copy-box {
+            background: rgba(18, 16, 14, 0.92);
+            color: #f5f2eb;
+            padding: 24px;
+            border-radius: 4px;
+            border-left: 4px solid #12100e;
+        }
+
+        .poster-copy-box h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--orange-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .poster-copy-text {
+            font-size: 0.9rem;
             line-height: 1.7;
-            color: #d1cbc1;
-            margin-bottom: 20px;
             white-space: pre-line;
+            font-family: 'DM Sans', sans-serif;
         }
 
         footer {
@@ -359,174 +670,18 @@
 <body>
 
     <div class="container">
-        <!-- Header minimalista e sofisticado -->
+        <!-- Header -->
         <header>
             <h1>Maycon Maia</h1>
             <p>Creative Copywriter</p>
         </header>
 
-        <!-- VISÃO DA HOME (Prateleira de LPs) -->
+        <!-- HOME: Prateleira de LPs (10 Trabalhos) -->
         <div id="home-view">
-            <div class="section-label">Prateleira de Projetos &bull; Selecione uma faixa</div>
-
-            <div class="shelf-grid">
-                <!-- Álbum 1 -->
-                <button class="album-card" onclick="openProject(1)">
-                    <div class="sleeve-container">
-                        <div class="vinyl-disc">
-                            <div class="vinyl-label">Lado A<br>01</div>
-                        </div>
-                        <div class="album-jacket">
-                            <div class="retro-stripes">
-                                <span class="stripe-1"></span>
-                                <span class="stripe-2"></span>
-                                <span class="stripe-3"></span>
-                                <span class="stripe-4"></span>
-                            </div>
-                            <div class="jacket-top">
-                                <span class="track-number">Faixa 01</span>
-                            </div>
-                            <div class="jacket-body">
-                                <h2>O Futuro Analógico</h2>
-                                <p>Roteiro para TV</p>
-                            </div>
-                            <div class="jacket-bottom">Hi-Fi Stereo</div>
-                        </div>
-                    </div>
-                    <div class="album-meta">
-                        <span class="album-title">Campanha "O Futuro Analógico"</span>
-                        <span class="album-subtitle">Tom: Audacioso &bull; Direção de Copy</span>
-                    </div>
-                </button>
-
-                <!-- Álbum 2 -->
-                <button class="album-card" onclick="openProject(2)">
-                    <div class="sleeve-container">
-                        <div class="vinyl-disc">
-                            <div class="vinyl-label">Lado A<br>02</div>
-                        </div>
-                        <div class="album-jacket">
-                            <div class="retro-stripes">
-                                <span class="stripe-1"></span>
-                                <span class="stripe-2"></span>
-                                <span class="stripe-3"></span>
-                                <span class="stripe-4"></span>
-                            </div>
-                            <div class="jacket-top">
-                                <span class="track-number">Faixa 02</span>
-                            </div>
-                            <div class="jacket-body">
-                                <h2>EcoBeat Sound</h2>
-                                <p>Manifesto de Marca</p>
-                            </div>
-                            <div class="jacket-bottom">Hi-Fi Stereo</div>
-                        </div>
-                    </div>
-                    <div class="album-meta">
-                        <span class="album-title">Manifesto EcoBeat</span>
-                        <span class="album-subtitle">Tom: Inspirador &bull; Brand Voice</span>
-                    </div>
-                </button>
-
-                <!-- Álbum 3 -->
-                <button class="album-card" onclick="openProject(3)">
-                    <div class="sleeve-container">
-                        <div class="vinyl-disc">
-                            <div class="vinyl-label">Lado B<br>03</div>
-                        </div>
-                        <div class="album-jacket">
-                            <div class="retro-stripes">
-                                <span class="stripe-1"></span>
-                                <span class="stripe-2"></span>
-                                <span class="stripe-3"></span>
-                                <span class="stripe-4"></span>
-                            </div>
-                            <div class="jacket-top">
-                                <span class="track-number">Faixa 03</span>
-                            </div>
-                            <div class="jacket-body">
-                                <h2>SoundCassete</h2>
-                                <p>Social Media</p>
-                            </div>
-                            <div class="jacket-bottom">Hi-Fi Stereo</div>
-                        </div>
-                    </div>
-                    <div class="album-meta">
-                        <span class="album-title">Lançamento SoundCassete</span>
-                        <span class="album-subtitle">Tom: Irônico &bull; Campanha Digital</span>
-                    </div>
-                </button>
-
-                <!-- Álbum 4 -->
-                <button class="album-card" onclick="openProject(4)">
-                    <div class="sleeve-container">
-                        <div class="vinyl-disc">
-                            <div class="vinyl-label">Lado B<br>04</div>
-                        </div>
-                        <div class="album-jacket">
-                            <div class="retro-stripes">
-                                <span class="stripe-1"></span>
-                                <span class="stripe-2"></span>
-                                <span class="stripe-3"></span>
-                                <span class="stripe-4"></span>
-                            </div>
-                            <div class="jacket-top">
-                                <span class="track-number">Faixa 04</span>
-                            </div>
-                            <div class="jacket-body">
-                                <h2>Crônicas da Noite</h2>
-                                <p>Conteúdo Autoral</p>
-                            </div>
-                            <div class="jacket-bottom">Hi-Fi Stereo</div>
-                        </div>
-                    </div>
-                    <div class="album-meta">
-                        <span class="album-title">Crônicas da Madrugada</span>
-                        <span class="album-subtitle">Tom: Poético &bull; Narrativa Cativante</span>
-                    </div>
-                </button>
-            </div>
+            <div class="section-label">Prateleira de LPs &bull; Selecione um trabalho (1 a 10)</div>
+            <div class="shelf-grid" id="shelf-container"></div>
         </div>
 
-        <!-- VISÃO DO TOCADOR / DETALHES DO PROJETO -->
-        <div id="player-view">
-            <div class="player-header">
-                <button class="back-btn" onclick="goHome()">← Voltar à Prateleira</button>
-                <span style="font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-secondary);" id="player-track-info">Tocando Faixa 01</span>
-            </div>
-            
-            <div class="project-content-box">
-                <span class="meta-tag" id="project-meta-tag">Roteiro para TV &bull; Tom: Audacioso</span>
-                <h2 id="project-title">Campanha "O Futuro Analógico"</h2>
-                <div class="copy-text" id="project-body-text">
-                    [Aqui entrará o texto completo da sua campanha, roteiro ou manifesto. Você poderá editar facilmente este conteúdo a qualquer momento para apresentar o seu melhor trabalho com a profundidade que as agências exigem.]
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <p>&copy; 2026 Maycon Maia &bull; Todos os direitos reservados</p>
-        </footer>
-    </div>
-
-    <script>
-        // Dados dos projetos para o tocador
-        const projects = {
-            1: {
-                title: 'Campanha "O Futuro Analógico"',
-                meta: 'Roteiro para TV • Tom: Audacioso • Direção de Copy',
-                text: `[LOCUÇÃO EM OFF - TOM GRAVE E NOSTÁLGICO]\n\n"A gente acelerou tanto o passo que esqueceu onde deixou o ritmo.\nTelas que brilham, mas não iluminam. Toques que respondem, mas não sentem.\n\nE se o futuro que a gente tanto procura estivesse guardado na fita magnética que você deixou na gaveta?"\n\n[TRILHA: SYNTHWAVE CRESCENTE COM BAIXO ANÁLOGICO]\n\n"Voltar ao analógico não é retrocesso. É precisão. É dar espaço para a mensagem respirar antes de chegar ao coração de quem consome."\n\nMaycon Maia. Copywriting com frequência de vinil.`
-            },
-            2: {
-                title: 'Manifesto EcoBeat',
-                meta: 'Manifesto de Marca • Tom: Inspirador • Brand Voice',
-                text: `O som da terra não é silencioso. Ele pulsa no ritmo de quem decide fazer diferente.\n\nA EcoBeat nasce da convicção de que marcas com propósito não precisam gritar para serem ouvidas — elas precisam afinar o tom com o planeta.\n\nMenos ruído. Mais eco.\n\nPorque sustentabilidade de verdade não é campanha de estação. É a frequência em que a sua marca opera todos os dias.`
-            },
-            3: {
-                title: 'Lançamento SoundCassete',
-                meta: 'Social Media • Tom: Irônico • Campanha Digital',
-                text: `Enquanto o mercado gasta 3 horas discutindo a métrica do story de 5 segundos, tem gente com saudades de ouvir um lado inteiro de uma fita sem pular faixa.\n\nChegou a SoundCassete.\n\nPara quem prefere conteúdo com corpo, alma e um leve chiado de chiado analógico que prova que tem ser humano por trás do post.\n\nOuça por sua conta e risco.`
-            },
-            4: {
-                title: 'Crônicas da Madrugada',
-                meta: 'Conteúdo Au
+        <!-- TELA DO PROJETO: LAYOUT DINÂMICO MODULAR -->
+        <div id="project-view">
+            <div class="project-
