@@ -8,7 +8,7 @@
     <style>
         :root {
             --bg: #030305;
-            --surface: #0e0e12;
+            --surface: #0d0d12;
             --text: #f0f0f2;
             --muted: #888892;
             --neon-red: #ff3333;
@@ -36,7 +36,7 @@
 
         .container {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1000px;
         }
 
         header {
@@ -85,31 +85,30 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--muted);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        /* Grade Responsiva de Discos */
+        /* Grade de LPs */
         .grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 50px;
         }
 
-        @media (min-width: 640px) {
+        @media (min-width: 768px) {
             .grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 40px 30px;
+                gap: 60px 40px;
             }
         }
 
         @media (min-width: 1024px) {
             .grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 50px 40px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 70px 50px;
             }
         }
 
-        /* O Álbum de Vinil */
         .vinyl-item {
             text-decoration: none;
             color: inherit;
@@ -119,90 +118,104 @@
             cursor: pointer;
         }
 
-        .vinyl-cover-wrapper {
+        .vinyl-container {
             position: relative;
             width: 100%;
-            aspect-ratio: 1 / 1; /* Garante que seja perfeitamente quadrado */
-            background: #121218;
-            border-radius: 6px;
-            overflow: visible;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease;
+            aspect-ratio: 1 / 1;
         }
 
-        /* O Disco escondido que "escorre" para fora da capa no hover/toque */
-        .vinyl-record {
+        /* O Disco de Vinil que aparece saindo para a direita */
+        .vinyl-disc {
             position: absolute;
-            top: 50%;
-            right: 0;
+            top: 5%;
+            right: -15%; /* Fica visível para fora da capa */
             width: 90%;
             height: 90%;
-            transform: translateY(-50%) translateX(0);
-            background: radial-gradient(circle, #111 30%, #080808 31%, #1a1a1a 60%, #000 61%);
+            background: radial-gradient(circle, #050505 0%, #1a1a1a 40%, #080808 41%, #111 70%, #000 100%);
             border-radius: 50%;
             z-index: 1;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: inset 0 0 15px rgba(255,255,255,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.05);
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* O selo central colorido do disco */
-        .record-label {
-            width: 35%;
-            height: 35%;
+        /* Ranhuras do vinil em CSS */
+        .vinyl-disc::before {
+            content: '';
+            position: absolute;
+            inset: 15%;
+            border-radius: 50%;
+            border: 1px dashed rgba(255,255,255,0.06);
+        }
+
+        .vinyl-disc::after {
+            content: '';
+            position: absolute;
+            inset: 30%;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .vinyl-label {
+            width: 34%;
+            height: 34%;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.55rem;
+            font-size: 0.6rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+            z-index: 2;
         }
 
-        .vinyl-item:hover .vinyl-record,
-        .vinyl-item:active .vinyl-record {
-            transform: translateY(-50%) translateX(18px); /* O disco sai para fora da capa */
-        }
-
-        .vinyl-item:hover .vinyl-cover-wrapper {
-            transform: translateY(-4px);
-        }
-
-        /* A Capa frontal do LP (fica por cima do disco) */
+        /* A Capa do LP (Fica por cima do disco) */
         .vinyl-jacket {
             position: absolute;
             inset: 0;
             background: var(--surface);
-            border-radius: 6px;
-            z-index: 2;
+            border-radius: 4px;
+            z-index: 3;
             padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-sizing: border-box;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+            transition: transform 0.3s ease;
         }
 
-        /* Estilos e cores neon específicos para cada LP */
-        .lp-red .vinyl-jacket { border-color: rgba(255, 51, 51, 0.3); }
-        .lp-red .record-label { background: var(--neon-red); color: #000; }
+        /* Cores e Estilos Neon por Álbum */
+        .lp-red .vinyl-label { background: var(--neon-red); color: #000; }
+        .lp-red .vinyl-jacket { border-color: rgba(255, 51, 51, 0.4); box-shadow: 0 10px 30px rgba(255, 51, 51, 0.1); }
         .lp-red .jacket-tag { color: var(--neon-red); }
 
-        .lp-green .vinyl-jacket { border-color: rgba(0, 255, 136, 0.3); }
-        .lp-green .record-label { background: var(--neon-green); color: #000; }
+        .lp-green .vinyl-label { background: var(--neon-green); color: #000; }
+        .lp-green .vinyl-jacket { border-color: rgba(0, 255, 136, 0.4); box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1); }
         .lp-green .jacket-tag { color: var(--neon-green); }
 
-        .lp-orange .vinyl-jacket { border-color: rgba(255, 153, 0, 0.3); }
-        .lp-orange .record-label { background: var(--neon-orange); color: #000; }
+        .lp-orange .vinyl-label { background: var(--neon-orange); color: #000; }
+        .lp-orange .vinyl-jacket { border-color: rgba(255, 153, 0, 0.4); box-shadow: 0 10px 30px rgba(255, 153, 0, 0.1); }
         .lp-orange .jacket-tag { color: var(--neon-orange); }
 
-        .lp-purple .vinyl-jacket { border-color: rgba(176, 0, 255, 0.3); }
-        .lp-purple .record-label { background: var(--neon-purple); color: #fff; }
+        .lp-purple .vinyl-label { background: var(--neon-purple); color: #fff; }
+        .lp-purple .vinyl-jacket { border-color: rgba(176, 0, 255, 0.4); box-shadow: 0 10px 30px rgba(176, 0, 255, 0.1); }
         .lp-purple .jacket-tag { color: var(--neon-purple); }
+
+        /* Interação ao tocar/passar o mouse */
+        .vinyl-item:hover .vinyl-disc,
+        .vinyl-item:active .vinyl-disc {
+            transform: translateX(15px) rotate(15deg);
+        }
+
+        .vinyl-item:hover .vinyl-jacket {
+            transform: translateY(-6px);
+        }
 
         .jacket-top {
             display: flex;
@@ -219,19 +232,20 @@
 
         .jacket-art h2 {
             font-family: 'Syne', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: #fff;
             line-height: 1.2;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .jacket-art p {
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             color: var(--muted);
         }
 
         .vinyl-details {
+            margin-top: 12px;
             display: flex;
             flex-direction: column;
             gap: 4px;
@@ -239,7 +253,7 @@
 
         .vinyl-title {
             font-family: 'Syne', sans-serif;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: #fff;
         }
@@ -279,12 +293,10 @@
         <div class="grid">
             <!-- Álbum 1 -->
             <a href="#" class="vinyl-item lp-red">
-                <div class="vinyl-cover-wrapper">
-                    <!-- O disco saindo da capa -->
-                    <div class="vinyl-record">
-                        <div class="record-label">Lado A</div>
+                <div class="vinyl-container">
+                    <div class="vinyl-disc">
+                        <div class="vinyl-label">Lado A</div>
                     </div>
-                    <!-- A capa do LP -->
                     <div class="vinyl-jacket">
                         <div class="jacket-top">
                             <span class="jacket-tag">LP &bull; 01</span>
@@ -303,9 +315,9 @@
 
             <!-- Álbum 2 -->
             <a href="#" class="vinyl-item lp-green">
-                <div class="vinyl-cover-wrapper">
-                    <div class="vinyl-record">
-                        <div class="record-label">Lado A</div>
+                <div class="vinyl-container">
+                    <div class="vinyl-disc">
+                        <div class="vinyl-label">Lado A</div>
                     </div>
                     <div class="vinyl-jacket">
                         <div class="jacket-top">
@@ -325,9 +337,9 @@
 
             <!-- Álbum 3 -->
             <a href="#" class="vinyl-item lp-orange">
-                <div class="vinyl-cover-wrapper">
-                    <div class="vinyl-record">
-                        <div class="record-label">Lado B</div>
+                <div class="vinyl-container">
+                    <div class="vinyl-disc">
+                        <div class="vinyl-label">Lado B</div>
                     </div>
                     <div class="vinyl-jacket">
                         <div class="jacket-top">
@@ -347,9 +359,9 @@
 
             <!-- Álbum 4 -->
             <a href="#" class="vinyl-item lp-purple">
-                <div class="vinyl-cover-wrapper">
-                    <div class="vinyl-record">
-                        <div class="record-label">Lado B</div>
+                <div class="vinyl-container">
+                    <div class="vinyl-disc">
+                        <div class="vinyl-label">Lado B</div>
                     </div>
                     <div class="vinyl-jacket">
                         <div class="jacket-top">
@@ -375,4 +387,3 @@
 
 </body>
 </html>
-
