@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diskoteca | Portfólio de Redator</title>
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --text-color: #f1f1f1;
+            --neon-red: #ff2a2a;
+            --neon-green: #2aff7f;
+            --neon-orange: #ff9f1a;
+            --neon-yellow: #f1c40f;
+            --neon-purple: #9b59b6;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            color: var(--neon-yellow);
+        }
+
+        header p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .shelf {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .lp-card {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: left;
+            position: relative;
+        }
+
+        /* Cores de neon individuais para cada álbum/projeto */
+        .lp-red { border-color: var(--neon-red); box-shadow: 0 0 10px rgba(255, 42, 42, 0.3); }
+        .lp-green { border-color: var(--neon-green); box-shadow: 0 0 10px rgba(42, 255, 127, 0.3); }
+        .lp-orange { border-color: var(--neon-orange); box-shadow: 0 0 10px rgba(255, 159, 26, 0.3); }
+        .lp-purple { border-color: var(--neon-purple); box-shadow: 0 0 10px rgba(155, 89, 182, 0.3); }
+
+        .album-cover {
+            width: 100%;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+        }
+
+        .album-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+
+        .album-tag {
+            font-size: 0.8rem;
+            color: #bbb;
+            margin: 0;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Diskoteca de Redação</h1>
+        <p>Selecione um álbum para conferir o projeto</p>
+    </header>
+
+    <div class="shelf">
+        <!-- Projeto 1 (Vermelho Neon) -->
+        <div class="lp-card lp-red">
+            <div class="album-cover" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent), #3a0000;">
+                <span style="color: var(--neon-red); font-size: 0.8rem; font-weight: bold;">FAIXA 01</span>
+            </div>
+            <h2 class="album-title">Campanha "O Futuro Analógico"</h2>
+            <p class="album-tag">Roteiro para TV &bull; Tom: Audacioso</p>
+        </div>
+
+        <!-- Projeto 2 (Verde Neon) -->
+        <div class="lp-card lp-green">
+            <div class="album-cover" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent), #003a1a;">
+                <span style="color: var(--neon-green); font-size: 0.8rem; font-weight: bold;">FAIXA 02</span>
+            </div>
+            <h2 class="album-title">Manifesto de Marca: EcoBeat</h2>
+            <p class="album-tag">Copywriting &bull; Tom: Inspirador</p>
+        </div>
+
+        <!-- Projeto 3 (Laranja Neon) -->
+        <div class="lp-card lp-orange">
+            <div class="album-cover" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent), #3a2200;">
+                <span style="color: var(--neon-orange); font-size: 0.8rem; font-weight: bold;">FAIXA 03</span>
+            </div>
+            <h2 class="album-title">Lançamento SoundCassete</h2>
+            <p class="album-tag">Social Media &bull; Tom: Irônico</p>
+        </div>
+
+        <!-- Projeto 4 (Roxo Neon) -->
+        <div class="lp-card lp-purple">
+            <div class="album-cover" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent), #22003a;">
+                <span style="color: var(--neon-purple); font-size: 0.8rem; font-weight: bold;">FAIXA 04</span>
+            </div>
+            <h2 class="album-title">Crônicas da Madrugada</h2>
+            <p class="album-tag">Conteúdo Autoral &bull; Tom: Poético</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Redação & Vinil.</p>
+    </footer>
+
+</body>
+</html>
